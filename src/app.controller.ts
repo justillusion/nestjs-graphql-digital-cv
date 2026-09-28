@@ -5,4 +5,9 @@ export class AppController {
   @Get()
   @Redirect('/graphql', 302)
   home() {}
+
+  @Get('health')
+  health() {
+    return { status: 'ok' };
+  }
 }
