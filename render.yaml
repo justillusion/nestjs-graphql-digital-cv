@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: nestjs-graphql-digital-cv
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /graphql
+    autoDeployTrigger: commit
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: digital-cv-db
+          property: connectionString
+
+databases:
+  - name: digital-cv-db
+    plan: free
+    region: frankfurt
+    databaseName: digital_card
